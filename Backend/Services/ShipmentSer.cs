@@ -38,7 +38,9 @@ namespace Purch_Managment.Services
         //Get Shipments By ID
         public async Task<ActionResult<ShipmentModel>> GetShipment(int id)
         {
-            var Shipment = await _context.Shipments.FindAsync(id);
+            var Shipment = await _context.Shipments.Include(s => s.Supplier).Include(s => s.PurchTeam).
+                Include(s => s.ShippingCompany).Include(s => s.Currency).Include(s => s.Port).Include(s => s.Storage).
+                Include(s => s.CurrentStatus).Include(s => s.Porker).Include(s => s.TaxesCurrency).FirstOrDefaultAsync(i => i.ShipmentId == id); 
 
             if (Shipment == null)
             {
