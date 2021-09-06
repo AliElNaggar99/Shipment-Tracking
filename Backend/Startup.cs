@@ -48,6 +48,10 @@ namespace Purch_Managment
             services.AddScoped<StorageSer, StorageSer>();
             services.AddScoped<PurchasingTeamHandler, PurchasingTeamHandler>();
             services.AddScoped<PurchasingTeamSer, PurchasingTeamSer>();
+            services.AddScoped<SupplierHandler, SupplierHandler>();
+            services.AddScoped<SupplierSer, SupplierSer>();
+            services.AddScoped<StatusHandler, StatusHandler>();
+            services.AddScoped<StatusSer, StatusSer>();
 
         }
 
