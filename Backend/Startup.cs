@@ -40,6 +40,8 @@ namespace Purch_Managment
             services.AddScoped<ShipmentSer, ShipmentSer>();
             services.AddScoped<CurrencyHandler, CurrencyHandler>();
             services.AddScoped<CurrencySer, CurrencySer>();
+            services.AddScoped<PortHandler, PortHandler>();
+            services.AddScoped<PortSer, PortSer>();
 
         }
 

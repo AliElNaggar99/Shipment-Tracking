@@ -50,9 +50,8 @@ namespace Purch_Managment.Controllers
             return _ShipmentSer.DeleteShipment(id);
         }
 
-
         //Edit Shipment
-        [HttpPut("{id}")]
+        [HttpPut()]
         public Task<IActionResult> EditShipment(int id, Shipment shipment)
         {
             return _ShipmentSer.EditShipment(id,shipment);

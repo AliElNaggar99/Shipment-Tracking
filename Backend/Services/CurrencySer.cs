@@ -62,7 +62,7 @@ namespace Purch_Managment.Services
         {
             try
             {
-                var currency = await _context.Shipments.FindAsync(id);
+                var currency = await _context.Currencies.FindAsync(id);
                 _context.Entry(currency).State = EntityState.Deleted;
                 _context.SaveChanges();
                 return _controller.StatusCode(200);

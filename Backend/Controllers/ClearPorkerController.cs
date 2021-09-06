@@ -55,7 +55,7 @@ namespace Purch_Managment.Controllers
 
 
         //Edit Porker Name
-        [HttpPut("{id}")]
+        [HttpPut()]
         public  Task<IActionResult> EditPorkerName(int id, ClearPorker clearPorker)
         {
             return _ClearPorkerSer.EditPorkerName(id, clearPorker);

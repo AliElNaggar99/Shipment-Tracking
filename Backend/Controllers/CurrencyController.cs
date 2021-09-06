@@ -50,7 +50,7 @@ namespace Purch_Managment.Controllers
 
 
         //Edit Currency
-        [HttpPut("{id}")]
+        [HttpPut()]
         public Task<IActionResult> EditCurrency(Currency currency)
         {
             return _currencySer.EditCurrency(currency);
