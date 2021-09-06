@@ -56,6 +56,8 @@ namespace Purch_Managment
             services.AddScoped<ShippingCompanySer, ShippingCompanySer>();
             services.AddScoped<ShipmentLogsHandlers, ShipmentLogsHandlers>();
             services.AddScoped<ShipmentLogsSer, ShipmentLogsSer>();
+            services.AddScoped<ShipmentProductsHandler, ShipmentProductsHandler>();
+            services.AddScoped<ShipmentProductsSer, ShipmentProductsSer>();
 
         }
 
