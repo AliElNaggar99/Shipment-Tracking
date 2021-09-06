@@ -27,7 +27,7 @@ namespace Purch_Managment.Services
         //Get All Currencies
         public async Task<List<CurrencyModel>> GetAllCurrencies()
         {
-            var currencies = await _context.Currencies.Select(x => _handler.CurrencyHandlerToModel(x)).ToListAsync(); ;
+            var currencies = await _context.Currencies.Select(x => _handler.CurrencyHandlerToModel(x)).ToListAsync(); 
             return currencies;
 
         }
@@ -52,8 +52,6 @@ namespace Purch_Managment.Services
         {
             _context.Currencies.Add(currency);
             await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
             return _controller.CreatedAtAction(nameof(GetCurrency), new { id = currency.CurrenId}, _handler.CurrencyHandlerToModel(currency));
         }
 

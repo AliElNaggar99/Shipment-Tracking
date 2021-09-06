@@ -29,7 +29,7 @@ namespace Purch_Managment.Services
             var Shipments = await _context.Shipments.Include(s => s.Supplier).Include(s => s.PurchTeam).
                 Include(s=>s.ShippingCompany).Include(s=>s.Currency).Include(s=>s.Port).Include(s=>s.Storage).
                 Include(s=>s.CurrentStatus).Include(s=>s.Porker).Include(s=>s.TaxesCurrency).
-                Select(x => _shipmentHandle.ShipmentHandlerToModel(x)).ToListAsync(); ;
+                Select(x => _shipmentHandle.ShipmentHandlerToModel(x)).ToListAsync(); 
             return Shipments;
 
         }
@@ -55,8 +55,6 @@ namespace Purch_Managment.Services
         {
             _context.Shipments.Add(shipment);
             await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
             return _controller.CreatedAtAction(nameof(GetShipment), new { id = shipment.ShipmentId }, _shipmentHandle.ShipmentHandlerToModel(shipment));
         }
 

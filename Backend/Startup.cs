@@ -44,6 +44,10 @@ namespace Purch_Managment
             services.AddScoped<PortSer, PortSer>();
             services.AddScoped<ProductHandler, ProductHandler>();
             services.AddScoped<ProductSer, ProductSer>();
+            services.AddScoped<StorageHandler, StorageHandler>();
+            services.AddScoped<StorageSer, StorageSer>();
+            services.AddScoped<PurchasingTeamHandler, PurchasingTeamHandler>();
+            services.AddScoped<PurchasingTeamSer, PurchasingTeamSer>();
 
         }
 

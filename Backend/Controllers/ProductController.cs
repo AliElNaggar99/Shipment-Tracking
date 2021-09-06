@@ -21,7 +21,7 @@ namespace Purch_Managment.Controllers
         // post: api/Product
         //Get All Products
         [HttpGet()]
-        public Task<List<ProductModel>> GetAlProducts()
+        public Task<List<ProductModel>> GetAllProducts()
         {
             return _productSer.GetAllProducts();
         }

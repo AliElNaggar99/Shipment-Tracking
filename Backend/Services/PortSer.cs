@@ -27,7 +27,7 @@ namespace Purch_Managment.Services
         //Get All Ports
         public async Task<List<PortModel>> GetAllPorts()
         {
-            var ports = await _context.Ports.Select(x => _handler.PortHandlerToModel(x)).ToListAsync(); ;
+            var ports = await _context.Ports.Select(x => _handler.PortHandlerToModel(x)).ToListAsync(); 
             return ports;
 
         }
@@ -52,8 +52,6 @@ namespace Purch_Managment.Services
         {
             _context.Ports.Add(port);
             await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
             return _controller.CreatedAtAction(nameof(GetPort), new { id = port.PortId }, _handler.PortHandlerToModel(port));
         }
 

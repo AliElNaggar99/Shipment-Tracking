@@ -28,7 +28,7 @@ namespace Purch_Managment.Services
         //Get All Products
         public async Task<List<ProductModel>> GetAllProducts()
         {
-            var products = await _context.Products.Select(x => _handler.ProductHandlerToModel(x)).ToListAsync(); ;
+            var products = await _context.Products.Select(x => _handler.ProductHandlerToModel(x)).ToListAsync(); 
             return products;
 
         }
@@ -53,8 +53,6 @@ namespace Purch_Managment.Services
         {
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
-
-            //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
             return _controller.CreatedAtAction(nameof(GetProduct), new { id = product.ProdId }, _handler.ProductHandlerToModel(product));
         }
 
