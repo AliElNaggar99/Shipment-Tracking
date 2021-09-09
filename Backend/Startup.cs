@@ -21,6 +21,7 @@ namespace Purch_Managment
 {
     public class Startup
     {
+       //readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,6 +33,13 @@ namespace Purch_Managment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsApi",
+                    builder => builder.WithOrigins("http://localhost:4200", "http://mywebsite.com")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
             services.AddScoped<Import_CompanyContext, Import_CompanyContext>();
             services.AddScoped<ClearPorkerHandler, ClearPorkerHandler>();
             services.AddScoped<ClearPorkerSer, ClearPorkerSer>();
@@ -64,6 +72,7 @@ namespace Purch_Managment
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -72,13 +81,13 @@ namespace Purch_Managment
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("CorsApi");
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+          
         }
     }
 }

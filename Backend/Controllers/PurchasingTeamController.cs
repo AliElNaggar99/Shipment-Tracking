@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Purch_Managment.DAL;
 using Purch_Managment.Models;
 using Purch_Managment.Services;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Purch_Managment.Controllers
 {
+    [EnableCors("CorsApi")]
     [Route("api/[controller]")]
     [ApiController]
     public class PurchasingTeamController
