@@ -55,9 +55,16 @@ namespace Purch_Managment.Services
         //Add Shipment to the Database
         public async Task<IActionResult> AddShipment(Shipment shipment)
         {
-            _context.Shipments.Add(shipment);
-            await _context.SaveChangesAsync();
-            return _controller.CreatedAtAction(nameof(GetShipment), new { id = shipment.ShipmentId }, _shipmentHandle.ShipmentHandlerToModel(shipment));
+            try
+            {
+                _context.Shipments.Add(shipment);
+                await _context.SaveChangesAsync();
+                return _controller.StatusCode(200);
+            }
+            catch(Exception ex)
+            {
+                return _controller.StatusCode(404);
+            }
         }
 
         //Delete Shipment by ID
@@ -83,7 +90,7 @@ namespace Purch_Managment.Services
         }
 
         //Edit Shipment Name
-        public async Task<IActionResult> EditShipment(int id ,Shipment shipment)
+        public async Task<IActionResult> EditShipment(Shipment shipment)
         {
    
             try

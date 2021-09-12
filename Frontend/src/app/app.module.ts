@@ -10,21 +10,36 @@ import { ShipmentComponent } from './shipment/shipment.component';
 import { TableComponent } from './table/table.component'; 
 import { HttpClientModule } from '@angular/common/http';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AddShipmentPageComponent } from './add-shipment-page/add-shipment-page.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DeleteShipmentComponent } from './delete-shipment/delete-shipment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShipmentComponent,
     TableComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    AddShipmentPageComponent,
+    DeleteShipmentComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatTableModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,4 @@
-<app-table [TableView]="TableView" [ViewData]="ViewData" [ColumnNames] ="ColumnName" ></app-table>
+<div class = "buttons">
+    <button mat-raised-button color="primary" [ngStyle] = "{'background-color':'#334155'}" (click)="openDialog('Add')">Add</button>
+</div>
+<app-table [TableView]="TableView" [ViewData]="ViewData" [ColumnNames] ="ColumnName" (ReturnItemIt)="getID($event)" [IDName]="IDname"></app-table>

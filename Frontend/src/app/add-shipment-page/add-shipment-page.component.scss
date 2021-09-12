@@ -1,6 +1,5 @@
-.buttons {
-    display: flex;
-    flex-direction: row-reverse;
+mat-form-field {
+    margin: 0.5rem;
 }
 
 button {
@@ -10,5 +9,8 @@ button {
     border-bottom-right-radius: 50px;
     width: 8rem;
     margin: 1rem;
-    color:white;
+}
+
+.data-label {
+    width: 20rem;
 }

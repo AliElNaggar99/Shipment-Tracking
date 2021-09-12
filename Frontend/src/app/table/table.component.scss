@@ -6,3 +6,13 @@ table {
     background-color: #D7E9F7;
     cursor: pointer;
   }
+
+button {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius:50px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  width: 6rem;
+  margin: 0.2rem;
+  color:white;
+}

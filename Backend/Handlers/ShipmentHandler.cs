@@ -40,8 +40,8 @@ namespace Purch_Managment.Handlers
                 Fines = shipment.Fines,
                 TaxesCurrencyId = shipment.TaxesCurrencyId,
                 TaxesCurrencyName = shipment.TaxesCurrency.CurrenName,
-                EstimatedDeliveryDate = shipment.EstimatedDeliveryDate,
-                ActualDeliveryDate = shipment.ActualDeliveryDate,
+                EstimatedDeliveryDate = shipment.EstimatedDeliveryDate.Value.Date.ToShortDateString(),
+               ActualDeliveryDate = shipment.ActualDeliveryDate.Value.Date.ToShortDateString(),
            };
     }
 }

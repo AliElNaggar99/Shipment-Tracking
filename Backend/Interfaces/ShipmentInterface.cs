@@ -18,6 +18,6 @@ namespace Purch_Managment.Interfaces
         //Delete Shipment by ID
         Task<IActionResult> DeleteShipment(int id);
         //Edit Shipment Name
-        Task<IActionResult> EditShipment(int id, Shipment shipment);
+        Task<IActionResult> EditShipment(Shipment shipment);
     }
 }

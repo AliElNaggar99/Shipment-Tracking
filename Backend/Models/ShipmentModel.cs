@@ -29,7 +29,7 @@ namespace Purch_Managment.Models
         public int Fines { get; set; }
         public int TaxesCurrencyId { get; set; }
         public string TaxesCurrencyName { get; set; }
-        public DateTime? EstimatedDeliveryDate { get; set; }
-        public DateTime? ActualDeliveryDate { get; set; }
+        public string? EstimatedDeliveryDate { get; set; }
+        public string? ActualDeliveryDate { get; set; }
     }
 }

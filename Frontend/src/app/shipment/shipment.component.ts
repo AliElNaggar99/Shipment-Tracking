@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { IShipment } from '../interfaces/IShipment';
 import { ShipmentService } from '../Services/shipment.service';
-
+import  {Inject} from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AddShipmentPageComponent } from '../add-shipment-page/add-shipment-page.component';
+import { IShipmentDB } from '../interfaces/IShipmentDB';
+import {ViewModel} from '../interfaces/ViewModel';
+import { DeleteShipmentComponent } from '../delete-shipment/delete-shipment.component';
 
 
 @Component({
@@ -16,8 +21,12 @@ export class ShipmentComponent implements OnInit {
   TableView : string = 'shipmentData';
   ViewData : any  ;
   ColumnName: string = 'shipmentColumn';
+  IDname = 'shipmentId';
 
-  constructor(private ShipmentServices : ShipmentService) { }
+
+  ShipmentToAdd:IShipmentDB = {};
+  constructor(private ShipmentServices : ShipmentService,public dialog: MatDialog) { }
+
 
   ngOnInit(): void {
    this.getAllShipments();
@@ -26,10 +35,110 @@ export class ShipmentComponent implements OnInit {
   getAllShipments(){
     this.ShipmentServices.getAllShipments().subscribe(res=>{
       this.ViewData = res;
+      console.log(this.ViewData);
     },error =>{
-
     });
-    console.log(this.ViewData);
+  }
+
+  AddNewShipments(shipment:IShipmentDB){
+    this.ShipmentServices.AddNewShipment(shipment).subscribe((res: any)=>{
+      this.getAllShipments();
+      console.log(res);
+    }).add(()=>{
+      this.ShipmentToAdd = {};
+    });
+  }
+
+  EditShipment(shipment:IShipmentDB){
+    console.log("Edit");
+    this.ShipmentServices.EditShipmet(shipment).subscribe((res: any)=>{
+      this.getAllShipments();
+      console.log(res);
+    }).add(()=>{
+      this.ShipmentToAdd = {};
+    });
+  }
+
+  getID(event : any){
+    console.log(event);
+    if(event.operation == "Edit")
+    {
+      this.ShipmentServices.GetShipmentBYID(event.id).subscribe(res =>{
+        this.ShipmentToAdd = res;
+        this.openDialog('Edit');
+      })
+    }
+    else
+    {
+      this.openDialogDelete(event.id);
+    }
+  }
+
+  openDialog(EditOrAdd:string): void {
+    console.log(this.ShipmentToAdd);
+    const dialogRef = this.dialog.open(AddShipmentPageComponent, {
+      width: '80%',height:'80%',
+      data: {
+        shipmentId: this.ShipmentToAdd.shipmentId,
+        supplierId : this.ShipmentToAdd.supplierId,
+        porkerId: this.ShipmentToAdd.porkerId,
+        currencyId: this.ShipmentToAdd.currencyId,
+        storageId: this.ShipmentToAdd.storageId,
+        portId: this.ShipmentToAdd.portId,
+        currentStatusId: this.ShipmentToAdd.currentStatusId,
+        shippingCompanyId: this.ShipmentToAdd.shippingCompanyId,
+        purchTeamId: this.ShipmentToAdd.purchTeamId,
+        wayOfTransport: this.ShipmentToAdd.wayOfTransport,
+        taxes: this.ShipmentToAdd.taxes,
+        fines: this.ShipmentToAdd.fines,
+        taxesCurrencyId: this.ShipmentToAdd.taxesCurrencyId,
+        estimatedDeliveryDate: this.ShipmentToAdd.estimatedDeliveryDate,
+        actualDeliveryDate: this.ShipmentToAdd.actualDeliveryDate,
+        EditOrAdd: EditOrAdd
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      if(EditOrAdd == "Add" && result != undefined){
+        this.ShipmentToAdd = result;
+        console.log(this.ShipmentToAdd);
+        this.AddNewShipments(this.ShipmentToAdd);
+      }
+      else if(EditOrAdd == "Edit" && result != undefined)
+      {
+        this.ShipmentToAdd = result;
+        this.ShipmentToAdd.estimatedDeliveryDate = result.estimatedDeliveryDate.value.toLocaleDateString();
+        this.ShipmentToAdd.actualDeliveryDate = result.actualDeliveryDate.value.toLocaleDateString();
+        console.log(this.ShipmentToAdd);
+        this.EditShipment(this.ShipmentToAdd);
+      }
+      else
+      {
+        this.ShipmentToAdd = {};
+      }
+    });
+  }
+
+  DeleteShipment(id : number)
+  {
+    this.ShipmentServices.DeleteShipment(id).subscribe(res=>{
+      this.getAllShipments();
+      console.log(res);
+    })
+  }
+
+  openDialogDelete(id:number): void {
+    const dialogRef = this.dialog.open(DeleteShipmentComponent, {
+      width: '25%',height:'25%',
+      data:{ID:id}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if(result)
+        this.DeleteShipment(id);
+    });
   }
 
 }
