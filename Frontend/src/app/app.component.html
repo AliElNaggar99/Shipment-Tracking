@@ -1,1 +1,8 @@
-<app-shipment></app-shipment>
+<!---<app-shipment></app-shipment> -->
+<app-menu-bar (OpenOrCloseNav) = "handleNavBar($event)"></app-menu-bar>
+<div #Content class ="content">
+    <h1>Welcome To Order Tracking!</h1>
+    <div class="home-cards">
+        <app-card class=" animate__animated animate__slideInUp" *ngFor="let item of myHomeData" [icon]="item.icon" [title]="item.title"></app-card>
+    </div>
+</div>

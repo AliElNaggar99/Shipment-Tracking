@@ -18,15 +18,13 @@ export class TableComponent implements OnInit {
    ViewData:any = [];
   @Input()
    ColumnNames:any =[];
-   @Input()
-   IDName:any={};
 
-  @Output() ReturnItemIt = new EventEmitter<any>();
+  @Output() DeleteItem = new EventEmitter<any>();
+  @Output() EditItem = new EventEmitter<any>();
 
   displayedColumns: string[] = [];
   dataSource :any =[];
   ColumnName:any = [];
-  IDNameToget:string = "";
 
 
   constructor(private myViewModel:ViewModel) {}
@@ -36,17 +34,18 @@ export class TableComponent implements OnInit {
     this.displayedColumns= (this.myViewModel.ViewModelObject as any)[this.TableView];
     this.dataSource = this.ViewData;
     this.ColumnName = (this.myViewModel.ViewModelObject as any)[this.ColumnNames];
-    this.IDNameToget = this.IDName;
   }
 
   ngOnChanges() {
     this.dataSource = this.ViewData;
   }
 
-  GetItemID(id:number,operation: string){
-    let OperationAndID = {id:id,operation:operation};
-    this.ReturnItemIt.emit(OperationAndID);
+  GetItemToDelete(object:any){
+    this.DeleteItem.emit(object);
   }
 
+  GetItemToEdit(object:any){
+    this.EditItem.emit(object);
+  }
 
 }

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{data.EditOrAdd}} New Shipment</h1>
+<h1 mat-dialog-title>{{data.EditOrAdd}} Shipment</h1>
 <div mat-dialog-content>
   <mat-form-field *ngFor = "let attr of ShipmentAttrs; let i = index" appearance="fill">
     <mat-label>{{ShipmentInputNames[i]}}</mat-label>
@@ -20,7 +20,7 @@
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="bottom-buttons">
    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{data.EditOrAdd}}</button>
    <button mat-button (click)="onNoClick()">Cancel</button>
 </div>

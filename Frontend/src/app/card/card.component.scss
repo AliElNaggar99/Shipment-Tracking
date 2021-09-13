@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+div.polaroid {
+    padding-top: 20px;
+    font-size: 1.5rem;
+    width: 250px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    border-radius: 10%;
+    font-family: 'Varela Round', sans-serif;
+    margin: 0.5rem;
+  }
+  
+  div.container {
+    padding: 5px;
+  }
+
+  div {
+    cursor: pointer;
+  }
+
+  div:hover{
+    color:white;
+    background-color: #11101D; 
+    border-radius: 10%;
+  }

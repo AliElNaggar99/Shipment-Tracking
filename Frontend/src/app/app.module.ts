@@ -18,6 +18,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DeleteShipmentComponent } from './delete-shipment/delete-shipment.component';
+import { CardComponent } from './card/card.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { DeleteShipmentComponent } from './delete-shipment/delete-shipment.compo
     TableComponent,
     MenuBarComponent,
     AddShipmentPageComponent,
-    DeleteShipmentComponent
+    DeleteShipmentComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { DeleteShipmentComponent } from './delete-shipment/delete-shipment.compo
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

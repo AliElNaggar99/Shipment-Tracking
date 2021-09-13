@@ -4,11 +4,10 @@
     <ng-container  *ngFor = "let column of displayedColumns; let i = index" matColumnDef={{column}}>
       <th mat-header-cell *matHeaderCellDef> {{ColumnName[i]}} </th>
       <td style='white-space: nowrap' mat-cell *matCellDef="let element" > {{element[column]}}  
-         <button *ngIf="column == 'actions'" mat-raised-button color="primary" [ngStyle] = "{'background-color':'#4f46e5'}" (click) ="GetItemID(element[IDNameToget],'Edit')">Edit</button>
-         <button *ngIf="column == 'actions'" mat-raised-button color="primary" [ngStyle] = "{'background-color':'#4f46e5'}" (click) ="GetItemID(element[IDNameToget],'Delete')">Delete</button>
+         <button *ngIf="column == 'actions'" mat-raised-button color="primary" [ngStyle] = "{'background-color':'#4f46e5'}" (click) ="GetItemToEdit(element)">Edit</button>
+         <button *ngIf="column == 'actions'" mat-raised-button color="primary" [ngStyle] = "{'background-color':'#4f46e5'}" (click) ="GetItemToDelete(element)">Delete</button>
       </td>
     </ng-container>
-    
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
