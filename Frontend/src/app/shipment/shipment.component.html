@@ -1,5 +1,5 @@
 <h1>Shipments</h1>
 <div class = "buttons">
-    <button mat-raised-button color="primary" [ngStyle] = "{'background-color':'#334155'}" (click)="openDialog('Add')">Add</button>
+    <button mat-fab color="primary" [ngStyle] = "{'background-color':'#334155'}" (click)="openDialog('Add')"><i class="fas fa-plus"></i></button>
 </div>
 <app-table [TableView]="TableView" [ViewData]="ViewData" [ColumnNames] ="ColumnName" (DeleteItem)="DeleteShipmentEvent($event)" (EditItem)="EditShipmentEvenet($event)"></app-table>

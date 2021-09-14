@@ -1,5 +1,10 @@
 <h1 mat-dialog-title>{{data.EditOrAdd}} Shipment</h1>
 <div mat-dialog-content>
+  <app-dropdownmenu [IDName]="myDropDownNames[0].IDName" [Name]="myDropDownNames[0].Name" [List] = "ListOfAllMenus[0]" [attriName] ="ShipmentAttrs[0]" [CurrentSelect] = "data[ShipmentAttrs[0]]"  (NewSelect)="UpdateID($event)"  [title]="ShipmentInputNames[0]" ></app-dropdownmenu>
+</div>
+
+
+<div mat-dialog-content>
   <mat-form-field *ngFor = "let attr of ShipmentAttrs; let i = index" appearance="fill">
     <mat-label>{{ShipmentInputNames[i]}}</mat-label>
     <input matInput [(ngModel)]="data[attr]">

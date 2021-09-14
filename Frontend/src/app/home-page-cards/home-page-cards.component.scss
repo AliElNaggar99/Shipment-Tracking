@@ -2,14 +2,7 @@
 h1{
     font-family: 'Varela Round', sans-serif;
 }
-
-
-.buttons {
+.home-cards{
     display: flex;
-    flex-direction: row-reverse;
-}
-
-button {
-    margin: 1rem;
-    color:white;
+    flex-wrap: wrap;
 }

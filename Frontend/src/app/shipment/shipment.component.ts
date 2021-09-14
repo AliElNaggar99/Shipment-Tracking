@@ -7,6 +7,7 @@ import { AddShipmentPageComponent } from '../add-shipment-page/add-shipment-page
 import { IShipmentDB } from '../interfaces/IShipmentDB';
 import {ViewModel} from '../interfaces/ViewModel';
 import { DeleteShipmentComponent } from '../delete-shipment/delete-shipment.component';
+import { SupplierService } from '../Services/supplier.service';
 
 
 @Component({
@@ -22,8 +23,9 @@ export class ShipmentComponent implements OnInit {
   ViewData : any  ;
   ColumnName: string = 'shipmentColumn';
 
+
   ShipmentToAdd:IShipmentDB = {};
-  constructor(private ShipmentServices : ShipmentService,public dialog: MatDialog) { }
+  constructor(private ShipmentServices : ShipmentService,public dialog: MatDialog,private SupplierServices:SupplierService) { }
 
 
   ngOnInit(): void {
@@ -67,8 +69,25 @@ export class ShipmentComponent implements OnInit {
   openDialog(EditOrAdd:string): void {
     console.log(this.ShipmentToAdd);
     const dialogRef = this.dialog.open(AddShipmentPageComponent, {
-      width: '80%',height:'60%',
-      data: {shipmentId: this.ShipmentToAdd.shipmentId,supplierId : this.ShipmentToAdd.supplierId,porkerId: this.ShipmentToAdd.porkerId,currencyId: this.ShipmentToAdd.currencyId,storageId: this.ShipmentToAdd.storageId,portId: this.ShipmentToAdd.portId,currentStatusId: this.ShipmentToAdd.currentStatusId,shippingCompanyId: this.ShipmentToAdd.shippingCompanyId,purchTeamId: this.ShipmentToAdd.purchTeamId,wayOfTransport: this.ShipmentToAdd.wayOfTransport,taxes: this.ShipmentToAdd.taxes,fines: this.ShipmentToAdd.fines,taxesCurrencyId: this.ShipmentToAdd.taxesCurrencyId,estimatedDeliveryDate: this.ShipmentToAdd.estimatedDeliveryDate,actualDeliveryDate: this.ShipmentToAdd.actualDeliveryDate,EditOrAdd: EditOrAdd}
+      data: {shipmentId: this.ShipmentToAdd.shipmentId,
+        supplierId : this.ShipmentToAdd.supplierId,
+        porkerId: this.ShipmentToAdd.porkerId,
+        currencyId: this.ShipmentToAdd.currencyId,
+        storageId: this.ShipmentToAdd.storageId,
+        portId: this.ShipmentToAdd.portId,
+        currentStatusId: this.ShipmentToAdd.currentStatusId,
+        shippingCompanyId: this.ShipmentToAdd.shippingCompanyId,
+        purchTeamId: this.ShipmentToAdd.purchTeamId,
+        wayOfTransport: this.ShipmentToAdd.wayOfTransport,
+        taxes: this.ShipmentToAdd.taxes,
+        fines: this.ShipmentToAdd.fines,
+        taxesCurrencyId: this.ShipmentToAdd.taxesCurrencyId,
+        estimatedDeliveryDate: this.ShipmentToAdd.estimatedDeliveryDate,
+        actualDeliveryDate: this.ShipmentToAdd.actualDeliveryDate,
+        EditOrAdd: EditOrAdd,
+        SupplierList:this.SupplierServices.getAllSuppliers(),
+
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -104,8 +123,7 @@ export class ShipmentComponent implements OnInit {
 
   openDialogDelete(id:number): void {
     const dialogRef = this.dialog.open(DeleteShipmentComponent, {
-      width: '25%',height:'25%',
-      data:{ID:id}
+      data:{ID:id,name:"Shipment"}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import { ShipmentComponent } from './shipment/shipment.component';
@@ -20,6 +18,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DeleteShipmentComponent } from './delete-shipment/delete-shipment.component';
 import { CardComponent } from './card/card.component';
 import {MatCardModule} from '@angular/material/card';
+import { RoutingModule } from './routing/routing.module';
+import { HomePageCardsComponent } from './home-page-cards/home-page-cards.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { SupplierPageComponent } from './supplier-page/supplier-page.component';
+import { InputDialogComponent } from './input-dialog/input-dialog.component';
+import {MatSelectModule} from '@angular/material/select';
+import {ReactiveFormsModule} from '@angular/forms';
+import { DropdownmenuComponent } from './dropdownmenu/dropdownmenu.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,11 @@ import {MatCardModule} from '@angular/material/card';
     MenuBarComponent,
     AddShipmentPageComponent,
     DeleteShipmentComponent,
-    CardComponent
+    CardComponent,
+    HomePageCardsComponent,
+    SupplierPageComponent,
+    InputDialogComponent,
+    DropdownmenuComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +54,12 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCardModule
+    MatCardModule,
+    RoutingModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

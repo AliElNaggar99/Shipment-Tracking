@@ -18,7 +18,7 @@ export class ShipmentService {
   }
 
   AddNewShipment(Shipment : IShipmentDB) : any{
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
       return this.http.post('https://localhost:44305/api/shipments',JSON.stringify(Shipment),{ headers: headers });
   }
   
@@ -34,7 +34,7 @@ export class ShipmentService {
   }
 
   EditShipmet(Shipment : IShipmentDB){
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
       return this.http.put('https://localhost:44305/api/shipments',JSON.stringify(Shipment),{ headers: headers });
   }
 

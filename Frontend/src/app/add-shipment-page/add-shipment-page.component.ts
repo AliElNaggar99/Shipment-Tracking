@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import  {Inject} from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { IShipmentDB } from '../interfaces/IShipmentDB';
 import { ViewModel } from '../interfaces/ViewModel';
 
-
+interface Animal {
+  name: string;
+  sound: string;
+}
 
 @Component({
   selector: 'app-add-shipment-page',
@@ -24,17 +27,25 @@ export class AddShipmentPageComponent implements OnInit {
 
     ShipmentAttrs = this.myViewModel.ViewModelObject.shipmentDataDB;
     ShipmentInputNames = this.myViewModel.ViewModelObject.shipmentDataDBNames;
+    myDropDownNames=this.myViewModel.ViewModelObject.DropDownMenuNames;
 
-    
+    ListOfAllMenus:[[]]=[[]]
 
   ngOnInit(): void {
-    console.log(this.ShipmentAttrs)
-   
+    this.data.SupplierList.subscribe((res: any)=>{
+      this.ListOfAllMenus[0]= res;
+    })
+
+
   }
 
   
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  UpdateID(event:any){
+    this.data[event.attrName] = event.newID;
   }
 
 }

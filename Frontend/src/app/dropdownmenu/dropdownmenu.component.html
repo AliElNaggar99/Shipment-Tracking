@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+    <mat-label>{{myTitle}}</mat-label>
+    <mat-select [ngModel]="myCurrentSelected" (ngModelChange)="ChangeOut($event)">
+      <mat-option *ngFor="let item of myList" [value]="item[myID]">
+        {{item[myName]}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
