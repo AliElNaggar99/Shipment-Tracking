@@ -25,11 +25,12 @@ export class AddShipmentPageComponent implements OnInit {
       this.data.actualDeliveryDate = new FormControl(new Date(this.data.actualDeliveryDate));
     }
 
-    ShipmentAttrs = this.myViewModel.ViewModelObject.shipmentDataDB;
-    ShipmentInputNames = this.myViewModel.ViewModelObject.shipmentDataDBNames;
+    ShipmentAttrs = this.myViewModel.ViewModelObject.shipmentDataDB.slice(9,12);
+    ShipmentInputNames = this.myViewModel.ViewModelObject.shipmentDataDBNames.slice(9,12);
     myDropDownNames=this.myViewModel.ViewModelObject.DropDownMenuNames;
 
-    ShipmentAttrsDrop = this.myViewModel.ViewModelObject.shipmentDataDB.slice(0,3);
+    ShipmentAttrsDrop = this.myViewModel.ViewModelObject.shipmentDataDB.slice(0,9);
+    ShipmentInputNamesDrop = this.myViewModel.ViewModelObject.shipmentDataDBNames.slice(0,9);
     ListOfAllMenus:any=[[]]
 
   ngOnInit(): void {
@@ -42,7 +43,26 @@ export class AddShipmentPageComponent implements OnInit {
     this.data.CurrencyList.subscribe((res: any)=>{
       this.ListOfAllMenus[2]= res;
     })
-
+    this.data.StoragesList.subscribe((res: any)=>{
+      this.ListOfAllMenus[3]= res;
+    })
+    this.data.PortsList.subscribe((res: any)=>{
+      this.ListOfAllMenus[4]= res;
+    })
+    this.data.StatusList.subscribe((res: any)=>{
+      this.ListOfAllMenus[5]= res;
+    })
+    this.data.ShippingCompanyList.subscribe((res: any)=>{
+      this.ListOfAllMenus[6]= res;
+    })
+    this.data.PurchasingTeamList.subscribe((res: any)=>{
+      this.ListOfAllMenus[7]= res;
+    })
+    this.data.CurrencyList.subscribe((res: any)=>{
+      this.ListOfAllMenus[8]= res;
+    })
+  
+  
   }
 
   

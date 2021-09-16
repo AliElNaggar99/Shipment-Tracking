@@ -11,7 +11,7 @@ const HomeData =[{icon:"truck",title:"Shipments"},
 {icon:"box-open",title:"Products"},
 {icon:"file-alt",title:"Shipments Logs"},
 {icon:"marker",title:"Status"},
-{icon:"boxes",title:" Shipment Products"},
+{icon:"boxes",title:"Shipment Products"},
 {icon:"dollar-sign",title:"Currencies"}
 ]
 

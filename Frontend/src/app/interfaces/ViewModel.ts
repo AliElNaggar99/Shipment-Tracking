@@ -4,10 +4,10 @@ export class ViewModel{
         "taxes","fines","taxesCurrencyName","estimatedDeliveryDate","actualDeliveryDate","actions"],
         shipmentColumn:["Shipment Id", "Supplier Name", "Porker Name", "Currency Name","Storage Name","Port Name","Current Status Name","Shipping Company Name","Purchasing Team Name","Way Of Transport",
         "Taxes","Fines","Taxes Currency Name","Estimated Delivery Date","Actual Delivery Date","Actions"],
-        shipmentDataDBNames:["Supplier", "Porker", "Currency","Storage Id","Port Id","Current Status Id","Shipping Company Id","Purchasing Team Id","Way Of Transport",
-        "Taxes","Fines","Taxes Currency Id"],
-        shipmentDataDB:["supplierId", "porkerId", "currencyId","storageId","portId","currentStatusId","shippingCompanyId","purchTeamId","wayOfTransport",
-        "taxes","fines","taxesCurrencyId"],
+        shipmentDataDBNames:["Supplier", "Porker", "Currency","Storage","Port","Current Status","Shipping Company","Purchasing Team","Taxes Currency","Way Of Transport",
+        "Taxes","Fines"],
+        shipmentDataDB:["supplierId", "porkerId", "currencyId","storageId","portId","currentStatusId","shippingCompanyId","purchTeamId","taxesCurrencyId","wayOfTransport",
+        "taxes","fines"],
 
         supplierData:["spId","spName","spLoc","actions"],
         supplierColumn:["Supplier Id" , "Supplier Name","Supplier Location","Actions"],
@@ -29,16 +29,47 @@ export class ViewModel{
         currenyDataDBNames:["Currency Name"],
         currenyDataDB:["currenName"],
 
+        storageData:["storageId","storageLocation","actions"],
+        storageColumn:["Storage Id", "Storage Location","Actions"],
+        storageDataDBNames:["Storage Location"],
+        storageDataDB:["storageLocation"],
+
+        portData:["portId","portName","actions"],
+        portColumn:["Port Id", "Port Name","Actions"],
+        portDataDBNames:["Port Name"],
+        portDataDB:["portName"],
+
+        
+        statusData:["statusId","statusName","actions"],
+        statusColumn:["Status Id", "Status Name","Actions"],
+        statusDataDBNames:["Status Name"],
+        statusDataDB:["statusName"],
+
+        shippingCompanyData:["shCpId","shCpName","actions"],
+        shippingCompanyColumn:["Shipping Company Id", "Shipping Company Name","Actions"],
+        shippingCompanyDataDBNames:["Shipping Company Name"],
+        shippingCompanyDataDB:["shCpName"],
 
         ShipmentProductsData:["prodId","prodName","quantity","prodPrice","totalPrice","actions"],
         ShipmentProductsColumn:["Product Id" , "Product Name","Quantity","Product Price","Total Price","Actions"],
         ShipmentProductsDataDBNames:["Quantity","Product Price","Total Price"],
         ShipmentProductsDataDB:["quantity","prodPrice","totalPrice"],
 
+        PurchasingTeamData:["purcMemId","purcMemName","actions"],
+        PurchasingTeamColumn:["Purchasing Member Id", "Purchasing Member Name","Actions"],
+        PurchasingTeamDataDBNames:["Purchasing Member Name"],
+        PurchasingTeamDataDB:["purcMemName"],
 
-
-
-        DropDownMenuNames:[{IDName:'spId' ,Name:'spName'},{IDName:'porkerId' , Name:"prokerName"},{IDName:'currenId' ,Name:'currenName'}]
+        DropDownMenuNames:[{IDName:'spId' ,Name:'spName'},
+        {IDName:'porkerId' , Name:"prokerName"},
+        {IDName:'currenId' ,Name:'currenName'},
+        {IDName:'storageId' ,Name:'storageLocation'},
+        {IDName:'portId' ,Name:'portName'},
+        {IDName:'statusId' ,Name:'statusName'},
+        {IDName:'shCpId' ,Name:'shCpName'},
+        {IDName:'purcMemId' ,Name:'purcMemName'},
+        {IDName:'currenId' ,Name:'currenName'},
+    ]
 
       
     };

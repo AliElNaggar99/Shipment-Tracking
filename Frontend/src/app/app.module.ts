@@ -33,6 +33,11 @@ import { ViewShipmentProductsComponent } from './view-shipment-products/view-shi
 import { AddOrEditShipmentProductComponent } from './add-or-edit-shipment-product/add-or-edit-shipment-product.component';
 import { ClearBorkersComponent } from './clear-borkers/clear-borkers.component';
 import { CurrenciesComponent } from './currencies/currencies.component';
+import { StoragePageComponent } from './storage-page/storage-page.component';
+import { PortPageComponent } from './port-page/port-page.component';
+import { StatuspageComponent } from './statuspage/statuspage.component';
+import { ShippingCompanyPageComponent } from './shipping-company-page/shipping-company-page.component';
+import { PurchasingTeamPageComponent } from './purchasing-team-page/purchasing-team-page.component';
 
 
 @NgModule({
@@ -52,7 +57,12 @@ import { CurrenciesComponent } from './currencies/currencies.component';
     ViewShipmentProductsComponent,
     AddOrEditShipmentProductComponent,
     ClearBorkersComponent,
-    CurrenciesComponent
+    CurrenciesComponent,
+    StoragePageComponent,
+    PortPageComponent,
+    StatuspageComponent,
+    ShippingCompanyPageComponent,
+    PurchasingTeamPageComponent
   ],
   imports: [
     BrowserModule,

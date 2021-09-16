@@ -12,6 +12,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ViewShipmentProductsComponent } from '../view-shipment-products/view-shipment-products.component';
 import { BrokersService } from '../Services/brokers.service';
 import { CurrenciesService } from '../Services/currencies.service';
+import { StorageServiceService } from '../Services/storage-service.service';
+import { PortService } from '../Services/port.service';
+import { StatusService } from '../Services/status.service';
+import { ShippingCompanyService } from '../Services/shipping-company.service';
+import { PurchasingTeamService } from '../Services/purchasing-team.service';
 
 
 @Component({
@@ -30,7 +35,8 @@ export class ShipmentComponent implements OnInit {
 
   ShipmentToAdd:IShipmentDB = {};
   constructor(private ShipmentServices : ShipmentService,public dialog: MatDialog,private SupplierServices:SupplierService,private _snackBar: MatSnackBar
-    ,private myBroker:BrokersService,private myCurrencies:CurrenciesService) { }
+    ,private myBroker:BrokersService,private myCurrencies:CurrenciesService,private myStorages:StorageServiceService,private myPort:PortService
+    ,private myStatus:StatusService,private myShippingCompany:ShippingCompanyService,private myPurchasingTeam:PurchasingTeamService) { }
 
 
   ngOnInit(): void {
@@ -117,6 +123,11 @@ export class ShipmentComponent implements OnInit {
         SupplierList:this.SupplierServices.getAllSuppliers(),
         BrokerList:this.myBroker.getAllBrokers(),
         CurrencyList:this.myCurrencies.getAllCurrencies(),
+        StoragesList:this.myStorages.getAllStorages(),
+        PortsList:this.myPort.getAllPorts(),
+        StatusList:this.myStatus.getAllItems(),
+        ShippingCompanyList:this.myShippingCompany.getAllItems(),
+        PurchasingTeamList:this.myPurchasingTeam.getAllItems(),
 
       }
     });
@@ -124,12 +135,30 @@ export class ShipmentComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result);
       if(EditOrAdd == "Add" && result != undefined){
+        result.SupplierList=[];
+        result.BrokerList=[];
+        result.CurrencyList=[];
+        result.StoragesList=[];
+        result.PortsList=[];
+        result.StatusList=[];
+        result.ShippingCompanyList=[];
+        result.PurchasingTeamList=[];
         this.ShipmentToAdd = result;
+        this.ShipmentToAdd.estimatedDeliveryDate = result.estimatedDeliveryDate.value.toLocaleDateString();
+        this.ShipmentToAdd.actualDeliveryDate = result.actualDeliveryDate.value.toLocaleDateString();
         console.log(this.ShipmentToAdd);
         this.AddNewShipments(this.ShipmentToAdd);
       }
       else if(EditOrAdd == "Edit" && result != undefined)
       {
+        result.SupplierList=[];
+        result.BrokerList=[];
+        result.CurrencyList=[];
+        result.StoragesList=[];
+        result.PortsList=[];
+        result.StatusList=[];
+        result.ShippingCompanyList=[];
+        result.PurchasingTeamList=[];
         this.ShipmentToAdd = result;
         this.ShipmentToAdd.estimatedDeliveryDate = result.estimatedDeliveryDate.value.toLocaleDateString();
         this.ShipmentToAdd.actualDeliveryDate = result.actualDeliveryDate.value.toLocaleDateString();
