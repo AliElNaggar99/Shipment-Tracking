@@ -16,7 +16,7 @@ namespace Purch_Managment.Interfaces
         Task<IActionResult> AddClearPorker(ClearPorker clearProker);
         Task<IActionResult> DeleteClearPorker(int id);
 
-        Task<IActionResult> EditPorkerName(int id, ClearPorker clearPorker);
+        Task<IActionResult> EditPorkerName(ClearPorker clearPorker);
 
     }
 }

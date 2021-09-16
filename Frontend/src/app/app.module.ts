@@ -27,6 +27,13 @@ import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import {MatSelectModule} from '@angular/material/select';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DropdownmenuComponent } from './dropdownmenu/dropdownmenu.component';
+import { ProductPageComponent } from './product-page/product-page.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ViewShipmentProductsComponent } from './view-shipment-products/view-shipment-products.component';
+import { AddOrEditShipmentProductComponent } from './add-or-edit-shipment-product/add-or-edit-shipment-product.component';
+import { ClearBorkersComponent } from './clear-borkers/clear-borkers.component';
+import { CurrenciesComponent } from './currencies/currencies.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +47,12 @@ import { DropdownmenuComponent } from './dropdownmenu/dropdownmenu.component';
     HomePageCardsComponent,
     SupplierPageComponent,
     InputDialogComponent,
-    DropdownmenuComponent
+    DropdownmenuComponent,
+    ProductPageComponent,
+    ViewShipmentProductsComponent,
+    AddOrEditShipmentProductComponent,
+    ClearBorkersComponent,
+    CurrenciesComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +71,8 @@ import { DropdownmenuComponent } from './dropdownmenu/dropdownmenu.component';
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

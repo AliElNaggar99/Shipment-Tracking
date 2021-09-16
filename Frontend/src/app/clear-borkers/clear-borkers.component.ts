@@ -3,32 +3,32 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteShipmentComponent } from '../delete-shipment/delete-shipment.component';
 import { InputDialogComponent } from '../input-dialog/input-dialog.component';
-import { ISupplier } from '../interfaces/ISupplier';
-import { SupplierService } from '../Services/supplier.service';
+import { IBroker } from '../interfaces/IBroker';
+import { BrokersService } from '../Services/brokers.service';
 
 @Component({
-  selector: 'app-supplier-page',
-  templateUrl: './supplier-page.component.html',
-  styleUrls: ['./supplier-page.component.scss']
+  selector: 'app-clear-borkers',
+  templateUrl: './clear-borkers.component.html',
+  styleUrls: ['./clear-borkers.component.scss']
 })
-export class SupplierPageComponent implements OnInit {
+export class ClearBorkersComponent implements OnInit {
 
-  constructor(private mySupplierService : SupplierService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
+  constructor(private myBrokerService : BrokersService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
-  TableView : string = 'supplierData';
+  TableView : string = 'brokerData';
   ViewData : any  ;
-  ColumnName: string = 'supplierColumn';
+  ColumnName: string = 'brokerColumn';
 
-  Supplier:ISupplier ={};
+  Broker:IBroker ={};
  
 
   ngOnInit(): void {
-    this.getAllSupplier();
+    this.getAllBrokers();
   }
 
-  AddNewSupplier(supplier:ISupplier){
-    this.mySupplierService.AddNewSupplier(supplier).subscribe((res: any)=>{
-      this.getAllSupplier();
+  AddNewBroker(Broker:IBroker){
+    this.myBrokerService.AddNewBroker(Broker).subscribe((res: any)=>{
+      this.getAllBrokers();
       console.log(res);
       this._snackBar.open("Action was Done Successful! ✔️","",{
         duration: 3000,
@@ -41,14 +41,14 @@ export class SupplierPageComponent implements OnInit {
           panelClass: ['snackbar-error']
         });
       }).add(()=>{
-      this.Supplier = {};
+      this.Broker = {};
 
     });
   }
 
-  EditSupplier(supplier:ISupplier){
-    this.mySupplierService.EditSupplier(supplier).subscribe((res: any)=>{
-      this.getAllSupplier();
+  EditBroker(Broker:IBroker){
+    this.myBrokerService.EditBroker(Broker).subscribe((res: any)=>{
+      this.getAllBrokers();
       console.log(res);
       this._snackBar.open("Action was Done Successful! ✔️","",{
         duration: 3000,
@@ -61,72 +61,75 @@ export class SupplierPageComponent implements OnInit {
           panelClass: ['snackbar-error']
         });
       }).add(()=>{
-      this.Supplier = {};
+      this.Broker = {};
     });
   }
 
-  getAllSupplier(){
-    this.mySupplierService.getAllSuppliers().subscribe(res=>{
+  getAllBrokers(){
+    this.myBrokerService.getAllBrokers().subscribe(res=>{
       this.ViewData = res;
       console.log(this.ViewData);
     },error =>{
-      this._snackBar.open("There is No Suppliers Yet ❌","",{
+      this._snackBar.open("There is No Brokers Yet ❌","",{
         duration: 3000,
         panelClass: ['snackbar-error']
       });
     });
   }
 
-  EditSupplierEvent(event:any){
-    this.Supplier = event;
+  EditBrokerEvent(event:any){
+    this.Broker = event;
     this.openDialog('Edit');
   }
 
   openDialog(EditOrAdd:string){
     const dialogRef = this.dialog.open(InputDialogComponent, {
-      data: {title:"Supplier",spId: this.Supplier.spId,spName:this.Supplier.spName,spLoc:this.Supplier.spLoc,EditOrAdd: EditOrAdd , DataDB:"supplierDataDB" ,DataDBNames:"supplierDataDBNames"}
+      data: {title:"Clearance Brokers",porkerId: this.Broker.porkerId,
+      prokerName:this.Broker.prokerName,
+      EditOrAdd: EditOrAdd ,
+      DataDB:"brokerDataDB" ,DataDBNames:"brokerDataDBNames"}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
       if(EditOrAdd == "Add" && result != undefined){
-        this.Supplier = result;
-        console.log(this.Supplier);
-        this.AddNewSupplier(this.Supplier);
+        this.Broker = result;
+        console.log(this.Broker);
+        this.AddNewBroker(this.Broker);
       }
       else if(EditOrAdd == "Edit" && result != undefined)
       {
-        this.Supplier = result;
-        console.log(this.Supplier);
-        this.EditSupplier(this.Supplier);
+        this.Broker = result;
+        console.log(this.Broker);
+        this.EditBroker(this.Broker);
       }
       else
       {
-        this.Supplier = {};
+        this.Broker = {};
       }
     });
 
   }
 
-  DeleteSupplierEvent(event:any){
-    this.openDialogDelete(event.spId,event.spName);
+  DeleteBrokerEvent(event:any){
+    this.openDialogDelete(event.porkerId,event.prokerName);
   }
 
 
-  openDialogDelete(id:number,SpName:string): void {
+  openDialogDelete(id:number,Name:string): void {
     const dialogRef = this.dialog.open(DeleteShipmentComponent, {
-      data:{ID:"Supplier",name:SpName}
+      data:{ID:"Clearance Broker",name:Name}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if(result)
-        this.DeleteSupplier(id);
+        this.DeleteBroker(id);
     });
   }
 
-  DeleteSupplier(id:number){
-    this.mySupplierService.DeleteSupplier(id).subscribe(res=>{
-      this.getAllSupplier();
+  DeleteBroker(id:number){
+    this.myBrokerService.DeleteBroker(id).subscribe(res=>{
+      this.getAllBrokers();
       console.log(res);
       this._snackBar.open("Action was Done Successful! ✔️","",{
         duration: 3000,
@@ -140,5 +143,5 @@ export class SupplierPageComponent implements OnInit {
       });
   })
 }
-  
+
 }

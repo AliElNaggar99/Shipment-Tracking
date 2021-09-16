@@ -3,32 +3,31 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteShipmentComponent } from '../delete-shipment/delete-shipment.component';
 import { InputDialogComponent } from '../input-dialog/input-dialog.component';
-import { ISupplier } from '../interfaces/ISupplier';
-import { SupplierService } from '../Services/supplier.service';
+import { ICurrency } from '../interfaces/ICurrency';
+import { CurrenciesService } from '../Services/currencies.service';
 
 @Component({
-  selector: 'app-supplier-page',
-  templateUrl: './supplier-page.component.html',
-  styleUrls: ['./supplier-page.component.scss']
+  selector: 'app-currencies',
+  templateUrl: './currencies.component.html',
+  styleUrls: ['./currencies.component.scss']
 })
-export class SupplierPageComponent implements OnInit {
+export class CurrenciesComponent implements OnInit {
 
-  constructor(private mySupplierService : SupplierService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
+  constructor(private myCurrency : CurrenciesService,public dialog: MatDialog,private _snackBar: MatSnackBar) { }
 
-  TableView : string = 'supplierData';
+  TableView : string = 'currenyData';
   ViewData : any  ;
-  ColumnName: string = 'supplierColumn';
+  ColumnName: string = 'currenyColumn';
 
-  Supplier:ISupplier ={};
- 
+  Currency:ICurrency ={};
 
   ngOnInit(): void {
-    this.getAllSupplier();
+    this.getAllCurrencies();
   }
 
-  AddNewSupplier(supplier:ISupplier){
-    this.mySupplierService.AddNewSupplier(supplier).subscribe((res: any)=>{
-      this.getAllSupplier();
+  AddNewCurrency(Currency:ICurrency){
+    this.myCurrency.AddNewCurrency(Currency).subscribe((res: any)=>{
+      this.getAllCurrencies();
       console.log(res);
       this._snackBar.open("Action was Done Successful! ✔️","",{
         duration: 3000,
@@ -41,14 +40,14 @@ export class SupplierPageComponent implements OnInit {
           panelClass: ['snackbar-error']
         });
       }).add(()=>{
-      this.Supplier = {};
+      this.Currency = {};
 
     });
   }
 
-  EditSupplier(supplier:ISupplier){
-    this.mySupplierService.EditSupplier(supplier).subscribe((res: any)=>{
-      this.getAllSupplier();
+  EditCurreny(Currency:ICurrency){
+    this.myCurrency.EditCurrency(Currency).subscribe((res: any)=>{
+      this.getAllCurrencies();
       console.log(res);
       this._snackBar.open("Action was Done Successful! ✔️","",{
         duration: 3000,
@@ -61,72 +60,76 @@ export class SupplierPageComponent implements OnInit {
           panelClass: ['snackbar-error']
         });
       }).add(()=>{
-      this.Supplier = {};
+      this.Currency = {};
     });
   }
 
-  getAllSupplier(){
-    this.mySupplierService.getAllSuppliers().subscribe(res=>{
+  getAllCurrencies(){
+    this.myCurrency.getAllCurrencies().subscribe(res=>{
       this.ViewData = res;
       console.log(this.ViewData);
     },error =>{
-      this._snackBar.open("There is No Suppliers Yet ❌","",{
+      this._snackBar.open("There is No Brokers Yet ❌","",{
         duration: 3000,
         panelClass: ['snackbar-error']
       });
     });
   }
 
-  EditSupplierEvent(event:any){
-    this.Supplier = event;
+  EditCurrencyEvent(event:any){
+    this.Currency = event;
     this.openDialog('Edit');
   }
 
   openDialog(EditOrAdd:string){
     const dialogRef = this.dialog.open(InputDialogComponent, {
-      data: {title:"Supplier",spId: this.Supplier.spId,spName:this.Supplier.spName,spLoc:this.Supplier.spLoc,EditOrAdd: EditOrAdd , DataDB:"supplierDataDB" ,DataDBNames:"supplierDataDBNames"}
+      data: {title:"Currencies",
+      currenId: this.Currency.currenId,
+      currenName:this.Currency.currenName,
+      EditOrAdd: EditOrAdd ,
+      DataDB:"currenyDataDB" ,DataDBNames:"currenyDataDBNames"}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
       if(EditOrAdd == "Add" && result != undefined){
-        this.Supplier = result;
-        console.log(this.Supplier);
-        this.AddNewSupplier(this.Supplier);
+        this.Currency = result;
+        console.log(this.Currency);
+        this.AddNewCurrency(this.Currency);
       }
       else if(EditOrAdd == "Edit" && result != undefined)
       {
-        this.Supplier = result;
-        console.log(this.Supplier);
-        this.EditSupplier(this.Supplier);
+        this.Currency = result;
+        console.log(this.Currency);
+        this.EditCurreny(this.Currency);
       }
       else
       {
-        this.Supplier = {};
+        this.Currency = {};
       }
     });
 
   }
 
-  DeleteSupplierEvent(event:any){
-    this.openDialogDelete(event.spId,event.spName);
+  DeleteCurrencyEvent(event:any){
+    this.openDialogDelete(event.currenId,event.currenName);
   }
 
 
-  openDialogDelete(id:number,SpName:string): void {
+  openDialogDelete(id:number,Name:string): void {
     const dialogRef = this.dialog.open(DeleteShipmentComponent, {
-      data:{ID:"Supplier",name:SpName}
+      data:{ID:"Currency",name:Name}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if(result)
-        this.DeleteSupplier(id);
+        this.DeleteCurrency(id);
     });
   }
 
-  DeleteSupplier(id:number){
-    this.mySupplierService.DeleteSupplier(id).subscribe(res=>{
-      this.getAllSupplier();
+  DeleteCurrency(id:number){
+    this.myCurrency.DeleteCurrency(id).subscribe(res=>{
+      this.getAllCurrencies();
       console.log(res);
       this._snackBar.open("Action was Done Successful! ✔️","",{
         duration: 3000,
@@ -140,5 +143,6 @@ export class SupplierPageComponent implements OnInit {
       });
   })
 }
-  
+
+
 }

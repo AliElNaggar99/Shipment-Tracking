@@ -25,6 +25,7 @@ export class TableComponent implements OnInit {
 
   @Output() DeleteItem = new EventEmitter<any>();
   @Output() EditItem = new EventEmitter<any>();
+  @Output() ViewProduct = new EventEmitter<any>();
 
   @ViewChild(MatSort)
   sort!: MatSort;
@@ -53,12 +54,21 @@ export class TableComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   GetItemToDelete(object:any){
     this.DeleteItem.emit(object);
   }
 
   GetItemToEdit(object:any){
     this.EditItem.emit(object);
+  }
+
+  ViewProductsInShipment(shipment:object){
+   this.ViewProduct.emit(shipment);
   }
 
 }

@@ -8,6 +8,10 @@ import { IShipmentDB } from '../interfaces/IShipmentDB';
 import {ViewModel} from '../interfaces/ViewModel';
 import { DeleteShipmentComponent } from '../delete-shipment/delete-shipment.component';
 import { SupplierService } from '../Services/supplier.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ViewShipmentProductsComponent } from '../view-shipment-products/view-shipment-products.component';
+import { BrokersService } from '../Services/brokers.service';
+import { CurrenciesService } from '../Services/currencies.service';
 
 
 @Component({
@@ -25,7 +29,8 @@ export class ShipmentComponent implements OnInit {
 
 
   ShipmentToAdd:IShipmentDB = {};
-  constructor(private ShipmentServices : ShipmentService,public dialog: MatDialog,private SupplierServices:SupplierService) { }
+  constructor(private ShipmentServices : ShipmentService,public dialog: MatDialog,private SupplierServices:SupplierService,private _snackBar: MatSnackBar
+    ,private myBroker:BrokersService,private myCurrencies:CurrenciesService) { }
 
 
   ngOnInit(): void {
@@ -37,13 +42,27 @@ export class ShipmentComponent implements OnInit {
       this.ViewData = res;
       console.log(this.ViewData);
     },error =>{
+      this._snackBar.open("There is No Shipments Yet ❌","",{
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
     });
   }
 
   AddNewShipments(shipment:IShipmentDB){
     this.ShipmentServices.AddNewShipment(shipment).subscribe((res: any)=>{
       this.getAllShipments();
-      console.log(res);
+      console.log(res);  
+      this._snackBar.open("Action was Done Successful! ✔️","",{
+        duration: 3000,
+        panelClass: ['snackbar-correctly']
+      });
+    },(err: any)=>{
+      console.log(err)
+      this._snackBar.open("Error, please Make Sure you entered everything correctly ❌","",{
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
     }).add(()=>{
       this.ShipmentToAdd = {};
     });
@@ -52,7 +71,17 @@ export class ShipmentComponent implements OnInit {
   EditShipment(shipment:IShipmentDB){
     this.ShipmentServices.EditShipmet(shipment).subscribe((res: any)=>{
       this.getAllShipments();
-      console.log(res);
+      console.log(res);  
+      this._snackBar.open("Action was Done Successful! ✔️","",{
+        duration: 3000,
+        panelClass: ['snackbar-correctly']
+      });
+    },(err: any)=>{
+      console.log(err)
+      this._snackBar.open("Error, please Make Sure you entered everything correctly ❌","",{
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
     }).add(()=>{
       this.ShipmentToAdd = {};
     });
@@ -86,6 +115,8 @@ export class ShipmentComponent implements OnInit {
         actualDeliveryDate: this.ShipmentToAdd.actualDeliveryDate,
         EditOrAdd: EditOrAdd,
         SupplierList:this.SupplierServices.getAllSuppliers(),
+        BrokerList:this.myBroker.getAllBrokers(),
+        CurrencyList:this.myCurrencies.getAllCurrencies(),
 
       }
     });
@@ -118,6 +149,16 @@ export class ShipmentComponent implements OnInit {
     this.ShipmentServices.DeleteShipment(id).subscribe(res=>{
       this.getAllShipments();
       console.log(res);
+      this._snackBar.open("Action was Done Successful! ✔️","",{
+        duration: 3000,
+        panelClass: ['snackbar-correctly']
+      });
+    },(err: any)=>{
+      console.log(err)
+      this._snackBar.open("Error, please Make Sure you entered everything correctly ❌","",{
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      });
     })
   }
 
@@ -130,6 +171,16 @@ export class ShipmentComponent implements OnInit {
       if(result)
         this.DeleteShipment(id);
     });
+  }
+
+  ViewShipmentProduct(shipment:any){
+  console.log(shipment);
+  const dialogRef = this.dialog.open(ViewShipmentProductsComponent, {
+    data:{ID:shipment.shipmentId , ShipmentData:shipment}
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(result);
+  });
   }
 
 }

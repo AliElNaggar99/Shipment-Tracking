@@ -2,7 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, OnInit, ViewChild } from '@
 
 
 const HomeData =[{icon:"truck",title:"Shipments"},
-{icon:"user",title:"Clearance Porkers"},
+{icon:"user",title:"Clearance Brokers"},
 {icon:"building",title:"Shipping Companies"},
 {icon:"warehouse",title:"Storages"},
 {icon:"users",title:"Purchasing Teams"},

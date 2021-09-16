@@ -1,0 +1,7 @@
+<h1>Shipment {{data.ID}}</h1>
+<div class = "buttons">
+    <button mat-fab color="primary" [ngStyle] = "{'background-color':'#334155'}" (click)="openDialog('Add')"><i class="fas fa-plus"></i></button>
+</div>
+<app-table [TableView]="TableView" [ViewData]="ViewData" [ColumnNames] ="ColumnName" (DeleteItem)="DeleteShipmentProductEvent($event)" 
+(EditItem)="EditShipmentProductEvent($event)">
+</app-table>

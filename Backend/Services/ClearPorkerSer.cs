@@ -86,14 +86,14 @@ namespace Purch_Managment.Services
 
 
         //Edit Porker Name
-        public async Task<IActionResult> EditPorkerName(int id, ClearPorker clearPorker)
+        public async Task<IActionResult> EditPorkerName(ClearPorker clearPorker)
         {
            /* if (id != clearPorker.PorkerId)
             {
                 return _controller.BadRequest();
             }
 */
-            var clearPorkerDB = await _context.ClearPorkers.FindAsync(id);
+            var clearPorkerDB = await _context.ClearPorkers.FindAsync(clearPorker.PorkerId);
 
             if(clearPorkerDB == null)
             {
@@ -105,7 +105,7 @@ namespace Purch_Managment.Services
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException) when (!ClearPorkerExists(id))
+            catch (DbUpdateConcurrencyException) when (!ClearPorkerExists(clearPorker.PorkerId))
             {
                   return _controller.NotFound();
               

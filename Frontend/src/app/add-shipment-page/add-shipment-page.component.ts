@@ -29,13 +29,19 @@ export class AddShipmentPageComponent implements OnInit {
     ShipmentInputNames = this.myViewModel.ViewModelObject.shipmentDataDBNames;
     myDropDownNames=this.myViewModel.ViewModelObject.DropDownMenuNames;
 
-    ListOfAllMenus:[[]]=[[]]
+    ShipmentAttrsDrop = this.myViewModel.ViewModelObject.shipmentDataDB.slice(0,3);
+    ListOfAllMenus:any=[[]]
 
   ngOnInit(): void {
     this.data.SupplierList.subscribe((res: any)=>{
       this.ListOfAllMenus[0]= res;
     })
-
+    this.data.BrokerList.subscribe((res: any)=>{
+      this.ListOfAllMenus[1]= res;
+    })
+    this.data.CurrencyList.subscribe((res: any)=>{
+      this.ListOfAllMenus[2]= res;
+    })
 
   }
 

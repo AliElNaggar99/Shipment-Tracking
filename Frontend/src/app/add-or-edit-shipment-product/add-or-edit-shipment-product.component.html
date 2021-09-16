@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>{{data.EditOrAdd}} Product</h1>
+<div mat-dialog-content>
+  <mat-form-field *ngIf="data.EditOrAdd =='Add'" appearance="fill">
+    <mat-label>Product</mat-label>
+    <mat-select [ngModel]="data['prodId']" (ngModelChange)="ChangeProduct($event)">
+      <mat-option *ngFor="let item of Products" [value]="item['prodId']">
+        {{item['prodName']}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field *ngIf="data.EditOrAdd =='Edit'"  appearance="fill">
+    <mat-label>Product</mat-label>
+    <input matInput [ngModel]="data['prodName']" readonly>
+</mat-form-field>
+</div>
+<div mat-dialog-content>
+  <mat-form-field  appearance="fill">
+    <mat-label>Quantity</mat-label>
+    <input matInput [ngModel]="data['quantity']" (ngModelChange)="ChangeData($event)">
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+    <mat-label>Product Price</mat-label>
+    <input matInput [(ngModel)]="data['prodPrice']" readonly>
+  </mat-form-field>
+  <mat-form-field  appearance="fill">
+    <mat-label>Total Price</mat-label>
+    <input matInput [(ngModel)]="data['totalPrice']" readonly>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="bottom-buttons">
+   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{data.EditOrAdd}}</button>
+   <button mat-button (click)="onNoClick()">Cancel</button>
+</div>

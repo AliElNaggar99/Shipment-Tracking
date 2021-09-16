@@ -1,6 +1,8 @@
 <h1 mat-dialog-title>{{data.EditOrAdd}} Shipment</h1>
 <div mat-dialog-content>
-  <app-dropdownmenu [IDName]="myDropDownNames[0].IDName" [Name]="myDropDownNames[0].Name" [List] = "ListOfAllMenus[0]" [attriName] ="ShipmentAttrs[0]" [CurrentSelect] = "data[ShipmentAttrs[0]]"  (NewSelect)="UpdateID($event)"  [title]="ShipmentInputNames[0]" ></app-dropdownmenu>
+  <app-dropdownmenu *ngFor="let attr of ShipmentAttrsDrop; let i = index"
+   [IDName]="myDropDownNames[i].IDName" [Name]="myDropDownNames[i].Name" [List] = "ListOfAllMenus[i]" 
+   [attriName] ="attr" [CurrentSelect] = "data[attr]"  (NewSelect)="UpdateID($event)"  [title]="ShipmentInputNames[i]" ></app-dropdownmenu>
 </div>
 
 

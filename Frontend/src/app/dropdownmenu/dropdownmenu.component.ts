@@ -47,6 +47,7 @@ export class DropdownmenuComponent implements OnInit {
 
   ChangeOut(event :any){
     let object = {attrName:this.myAttriName , newID:event}
+    console.log(object)
     this.NewSelect.emit(object);
   }
 

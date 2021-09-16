@@ -11,6 +11,8 @@ namespace Purch_Managment.Models
         public int ProdId { get; set; }
         public string ProdName { get; set; }
         public int? Quantity { get; set; }
+        public int? ProdPrice { get; set; }
         public int? TotalPrice { get; set; }
+        public int ProdWeight { get; set; }
     }
 }

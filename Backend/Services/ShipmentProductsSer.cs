@@ -47,9 +47,17 @@ namespace Purch_Managment.Services
         //Add ShipmentProducts to the Database
         public async Task<IActionResult> AddShipmentProducts(ShipmentProduct SP)
         {
-            _context.ShipmentProducts.Add(SP);
-            await _context.SaveChangesAsync();
-            return _controller.CreatedAtAction(nameof(GetShipmentProducts), new { id = SP.ShipmentId }, _handler.ShipmentProductsHandlerToModel(SP));
+            try
+            {
+                _context.ShipmentProducts.Add(SP);
+                await _context.SaveChangesAsync();
+                return _controller.StatusCode(200);
+
+            }
+            catch (Exception ex)
+            {
+                return _controller.StatusCode(400);
+            }
         }
 
         //Delete ShipmentProducts by ID
@@ -57,7 +65,7 @@ namespace Purch_Managment.Services
         {
             try
             {
-                var Prod = await _context.ShippmentLogs.FindAsync(SP.ShipmentId,SP.ProdId);
+                var Prod = await _context.ShipmentProducts.FindAsync(SP.ShipmentId,SP.ProdId);
                 _context.Entry(Prod).State = EntityState.Deleted;
                 _context.SaveChanges();
                 return _controller.StatusCode(200);

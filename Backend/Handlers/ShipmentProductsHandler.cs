@@ -22,7 +22,10 @@ namespace Purch_Managment.Handlers
                ProdId = SP.ProdId,
                ProdName = SP.Prod.ProdName,
                Quantity = SP.Quantity,
-               TotalPrice = SP.TotalPrice
+               TotalPrice = SP.TotalPrice,
+               ProdPrice = SP.Prod.ProdPrice,
+               ProdWeight = SP.Prod.ProdWeight
+             
            };
     }
 }
