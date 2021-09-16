@@ -9,7 +9,7 @@
     <ng-container *ngFor = "let column of displayedColumns; let i = index" matColumnDef={{column}}>
       <th  mat-header-cell *matHeaderCellDef mat-sort-header> {{ColumnName[i]}} </th>
       <td  style='white-space: nowrap' mat-cell *matCellDef="let element" > {{element[column]}}  
-         <button *ngIf="column == 'actions' && ColumnName[0]=='Shipment Id'" mat-mini-fab color="primary" [ngStyle] = "{'background-color':'#0D335D'}" (click) ="ViewProductsInShipment(element)"><i class="fas fa-boxes"></i></button>
+         <button *ngIf="column == 'actions' && ColumnName[0]=='Shipment Id'&& ColumnName[1]!='Product Id'" mat-mini-fab color="primary" [ngStyle] = "{'background-color':'#0D335D'}" (click) ="ViewProductsInShipment(element)"><i class="fas fa-boxes"></i></button>
          <button *ngIf="column == 'actions'" mat-mini-fab  color="primary" [ngStyle] = "{'background-color':'#01937C'}" (click) ="GetItemToEdit(element)"><i class="fas fa-edit"></i></button>
          <button *ngIf="column == 'actions'" mat-mini-fab color="primary" [ngStyle] = "{'background-color':'#DF2E2E'}" (click) ="GetItemToDelete(element)"><i class="fas fa-trash-alt"></i></button>
       </td>

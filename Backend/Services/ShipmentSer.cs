@@ -23,6 +23,14 @@ namespace Purch_Managment.Services
             _shipmentHandle = shipmentHandle;
         }
 
+        //Get All ShipmentsId only
+        public async Task<List<int>> GetAllShipmentsIds()
+        {
+            var Shipments = await _context.Shipments.Select(x => x.ShipmentId).ToListAsync();
+            return Shipments;
+
+        }
+
         //Get All Shipments
         public async Task<List<ShipmentModel>> GetAllShipments()
         {

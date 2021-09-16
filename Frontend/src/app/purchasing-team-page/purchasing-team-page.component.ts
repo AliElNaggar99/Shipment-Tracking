@@ -74,7 +74,7 @@ export class PurchasingTeamPageComponent implements OnInit {
       this.ViewData = res;
       console.log(this.ViewData);
     },error =>{
-      this._snackBar.open("There is No Suppliers Yet ❌","",{
+      this._snackBar.open("There is No Purchasing Teams Yet ❌","",{
         duration: 3000,
         panelClass: ['snackbar-error']
       });

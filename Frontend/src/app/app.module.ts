@@ -38,6 +38,8 @@ import { PortPageComponent } from './port-page/port-page.component';
 import { StatuspageComponent } from './statuspage/statuspage.component';
 import { ShippingCompanyPageComponent } from './shipping-company-page/shipping-company-page.component';
 import { PurchasingTeamPageComponent } from './purchasing-team-page/purchasing-team-page.component';
+import { ShipmentProductsPageComponent } from './shipment-products-page/shipment-products-page.component';
+
 
 
 @NgModule({
@@ -62,7 +64,8 @@ import { PurchasingTeamPageComponent } from './purchasing-team-page/purchasing-t
     PortPageComponent,
     StatuspageComponent,
     ShippingCompanyPageComponent,
-    PurchasingTeamPageComponent
+    PurchasingTeamPageComponent,
+    ShipmentProductsPageComponent
   ],
   imports: [
     BrowserModule,

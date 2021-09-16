@@ -13,6 +13,11 @@ export class ShipmentService {
 
   constructor(private http : HttpClient ) { }
 
+
+  getAllShipmentsId() : Observable<number[]>{
+    return this.http.get<number[]>('https://localhost:44305/api/shipments/id');
+}
+
   getAllShipments() : Observable<IShipment[]>{
       return this.http.get<IShipment[]>('https://localhost:44305/api/shipments/');
   }

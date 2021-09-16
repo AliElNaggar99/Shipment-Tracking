@@ -58,6 +58,13 @@ namespace Purch_Managment.Controllers
             return _ShipmentSer.EditShipment(shipment);
         }
 
+        //Get All Shipment ids
+        [HttpGet("id")]
+        public Task<List<int>> GetAllShipmentsIds()
+        {
+            return _ShipmentSer.GetAllShipmentsIds();
+        }
+
 
     }
 }

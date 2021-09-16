@@ -60,6 +60,11 @@ export class ViewModel{
         PurchasingTeamDataDBNames:["Purchasing Member Name"],
         PurchasingTeamDataDB:["purcMemName"],
 
+        ShipmentProductsPageData:["shipmentId","prodId","prodName","quantity","prodPrice","totalPrice","actions"],
+        ShipmentProductsPageColumn:["Shipment Id","Product Id" , "Product Name","Quantity","Product Price","Total Price","Actions"],
+        ShipmentProductsPageDataDBNames:["shipmentId","prodId","Quantity","Product Price","Total Price"],
+        ShipmentProductsPageDataDB:["Shipment Id","Product" ,"quantity","prodPrice","totalPrice"],
+
         DropDownMenuNames:[{IDName:'spId' ,Name:'spName'},
         {IDName:'porkerId' , Name:"prokerName"},
         {IDName:'currenId' ,Name:'currenName'},

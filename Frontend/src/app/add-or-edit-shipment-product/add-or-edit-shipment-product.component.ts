@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ViewModel } from '../interfaces/ViewModel';
+import { ProductService } from '../Services/product.service';
+import { ShipmentProductsService } from '../Services/shipment-products.service';
 
 @Component({
   selector: 'app-add-or-edit-shipment-product',
@@ -10,10 +12,11 @@ import { ViewModel } from '../interfaces/ViewModel';
 export class AddOrEditShipmentProductComponent implements OnInit {
 
   constructor( public dialogRef: MatDialogRef<AddOrEditShipmentProductComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private ShipmentProductService:ShipmentProductsService) { }
 
 
     Products:any=[];
+    Shipment:any=[];
 
 
   ngOnInit(): void {
@@ -23,9 +26,18 @@ export class AddOrEditShipmentProductComponent implements OnInit {
     }
     this.data.ProductsList.subscribe((res: any)=>{
     this.Products = res;
-    this.Products = this.Products.filter((Product: { prodId: any; }) =>{
-      return !(this.data.currentList.some((current: { prodId: any; }) => {return current.prodId == Product.prodId }))});
-    })
+    if(this.data.Called != "ShipmentProductPage")
+    {
+      this.Products = this.Products.filter((Product: { prodId: any; }) =>{
+        return !(this.data.currentList.some((current: { prodId: any; }) => {return current.prodId == Product.prodId }))});
+      }
+    }
+    )
+    if(this.data.Called == "ShipmentProductPage"){
+      this.data.ShipmentList.subscribe((res: any)=>{
+        this.Shipment = res;
+      })
+    }
  
   }
 
@@ -52,6 +64,22 @@ export class AddOrEditShipmentProductComponent implements OnInit {
     console.log(productPrice)
     this.data.prodPrice = productPrice!['prodPrice'];
     this.data.totalPrice = this.data.quantity * this.data.prodPrice;
+  }
+
+  ChangeShipment(event:any){
+    this.data.shipmentId = event;
+    this.ShipmentProductService.GetShipmentProductsBYID(this.data.shipmentId).subscribe(res=>{
+      this.data.currentList = res;
+      this.Products = this.Products.filter((Product: { prodId: any; }) =>{
+        return !(this.data.currentList.some((current: { prodId: any, shipmentId: any; }) => {return current.prodId == Product.prodId}))});
+      console.log(this.data.currentList)
+    },err =>{
+      //Error means empty list
+      this.data.currentList=[];
+      this.data.ProductsList.subscribe((res: any)=>{
+        this.Products = res;
+      });
+    })
   }
 
 }
