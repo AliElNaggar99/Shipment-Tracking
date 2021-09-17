@@ -28,6 +28,7 @@ export class AddOrEditShipmentProductComponent implements OnInit {
     this.Products = res;
     if(this.data.Called != "ShipmentProductPage")
     {
+      //this remove the products of current shipment in the product list to prevent Duplications
       this.Products = this.Products.filter((Product: { prodId: any; }) =>{
         return !(this.data.currentList.some((current: { prodId: any; }) => {return current.prodId == Product.prodId }))});
       }
@@ -41,8 +42,6 @@ export class AddOrEditShipmentProductComponent implements OnInit {
  
   }
 
-
-    
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -70,12 +69,14 @@ export class AddOrEditShipmentProductComponent implements OnInit {
     this.data.shipmentId = event;
     this.ShipmentProductService.GetShipmentProductsBYID(this.data.shipmentId).subscribe(res=>{
       this.data.currentList = res;
+      //this remove the products of current shipment in the product list to prevent Duplications
       this.Products = this.Products.filter((Product: { prodId: any; }) =>{
         return !(this.data.currentList.some((current: { prodId: any, shipmentId: any; }) => {return current.prodId == Product.prodId}))});
       console.log(this.data.currentList)
     },err =>{
       //Error means empty list
       this.data.currentList=[];
+      //Update the product list to view all products
       this.data.ProductsList.subscribe((res: any)=>{
         this.Products = res;
       });
