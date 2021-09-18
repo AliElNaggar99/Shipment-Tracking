@@ -39,6 +39,7 @@ import { StatuspageComponent } from './statuspage/statuspage.component';
 import { ShippingCompanyPageComponent } from './shipping-company-page/shipping-company-page.component';
 import { PurchasingTeamPageComponent } from './purchasing-team-page/purchasing-team-page.component';
 import { ShipmentProductsPageComponent } from './shipment-products-page/shipment-products-page.component';
+import { ViewModel } from './interfaces/ViewModel';
 
 
 
@@ -87,7 +88,7 @@ import { ShipmentProductsPageComponent } from './shipment-products-page/shipment
     ReactiveFormsModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [ViewModel],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

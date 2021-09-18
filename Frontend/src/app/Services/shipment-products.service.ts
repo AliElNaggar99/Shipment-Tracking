@@ -2,25 +2,28 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IShipmentProducts } from '../interfaces/IShipmentProduct';
+import { ViewModel } from '../interfaces/ViewModel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShipmentProductsService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private myViewMode : ViewModel) { }
+
+  ApiUrl = this.myViewMode.ViewModelObject.ApiUrl +"/shipmentproducts/" ;
 
   getAllShipmentProducts() : Observable<IShipmentProducts[]>{
-    return this.http.get<IShipmentProducts[]>('https://localhost:44305/api/shipmentproducts/');
+    return this.http.get<IShipmentProducts[]>(this.ApiUrl);
 }
 
  AddNewShipmentProducts(shipmentproducts : IShipmentProducts) : any{
    // let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.post('https://localhost:44305/api/shipmentproducts',shipmentproducts);
+    return this.http.post(this.ApiUrl,shipmentproducts);
 }
 
 DeleteShipmentProducts(shipmentproducts : IShipmentProducts){
-  let url = 'https://localhost:44305/api/shipmentproducts/';
+  let url = this.ApiUrl;
   //console.log(url);
   const options = {
     headers: new HttpHeaders({
@@ -32,12 +35,12 @@ DeleteShipmentProducts(shipmentproducts : IShipmentProducts){
 }
 
 GetShipmentProductsBYID(id : number){
-  let url = 'https://localhost:44305/api/shipmentproducts/'+id;
+  let url = this.ApiUrl+id;
   return this.http.get(url);
 }
 
 EditShipmentProducts(shipmentproducts : IShipmentProducts){
-    return this.http.put('https://localhost:44305/api/shipmentproducts',shipmentproducts);
+    return this.http.put(this.ApiUrl,shipmentproducts);
 }
 
 }

@@ -40,7 +40,8 @@ namespace Purch_Managment
                         .AllowAnyHeader()
                         .AllowAnyMethod());
             });
-            services.AddScoped<Import_CompanyContext, Import_CompanyContext>();
+            //services.AddScoped<Import_CompanyContext, Import_CompanyContext>();
+            services.AddDbContext<Import_CompanyContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("ImportCompanyDB")));
             services.AddScoped<ClearPorkerHandler, ClearPorkerHandler>();
             services.AddScoped<ClearPorkerSer, ClearPorkerSer>();
             services.AddScoped<ErrorHandler, ErrorHandler>();

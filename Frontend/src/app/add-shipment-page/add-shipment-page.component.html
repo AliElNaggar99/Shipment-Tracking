@@ -3,11 +3,8 @@
   <app-dropdownmenu *ngFor="let attr of ShipmentAttrsDrop; let i = index"
    [IDName]="myDropDownNames[i].IDName" [Name]="myDropDownNames[i].Name" [List] = "ListOfAllMenus[i]" 
    [attriName] ="attr" [CurrentSelect] = "data[attr]"  (NewSelect)="UpdateID($event)"  [title]="ShipmentInputNamesDrop[i]" ></app-dropdownmenu>
-</div>
 
-
-<div mat-dialog-content>
-  <mat-form-field *ngFor = "let attr of ShipmentAttrs; let i = index" appearance="fill">
+   <mat-form-field *ngFor = "let attr of ShipmentAttrs; let i = index" appearance="fill">
     <mat-label>{{ShipmentInputNames[i]}}</mat-label>
     <input matInput [(ngModel)]="data[attr]">
   </mat-form-field>

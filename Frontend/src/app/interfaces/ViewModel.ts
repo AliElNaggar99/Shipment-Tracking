@@ -74,8 +74,10 @@ export class ViewModel{
         {IDName:'shCpId' ,Name:'shCpName'},
         {IDName:'purcMemId' ,Name:'purcMemName'},
         {IDName:'currenId' ,Name:'currenName'},
-    ]
+    ],
 
+
+    ApiUrl:"https://purchmanagmentapi.azurewebsites.net/api"
       
     };
 
