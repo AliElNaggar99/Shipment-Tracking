@@ -51,6 +51,10 @@ export class AddShipmentPageComponent implements OnInit {
     })
     this.data.StatusList.subscribe((res: any)=>{
       this.ListOfAllMenus[5]= res;
+      if(this.data.EditOrAdd == "Add")
+      {
+        this.ListOfAllMenus[5] =  this.ListOfAllMenus[5].filter((Status: { statusName: string; }) =>{return Status.statusName == "Created"})
+      }
     })
     this.data.ShippingCompanyList.subscribe((res: any)=>{
       this.ListOfAllMenus[6]= res;

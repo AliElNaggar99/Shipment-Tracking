@@ -7,6 +7,7 @@ namespace Purch_Managment.DAL
 {
     public partial class ShippmentLog
     {
+        public int LogId { get; set; }
         public int ShippmentId { get; set; }
         public int StatusId { get; set; }
         public DateTime? StartDate { get; set; }

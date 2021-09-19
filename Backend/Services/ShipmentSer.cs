@@ -66,6 +66,15 @@ namespace Purch_Managment.Services
             try
             {
                 _context.Shipments.Add(shipment);
+                ShippmentLog ShipmentLog = new ShippmentLog();
+                _context.SaveChanges();
+                //Make a  new log for the created shipment with status of created
+                // and time equal current time;
+                ShipmentLog.ShippmentId = shipment.ShipmentId;
+                ShipmentLog.StatusId = shipment.CurrentStatusId;
+                ShipmentLog.StartDate = DateTime.Now;
+                ShipmentLog.EndDate = DateTime.Now;
+                _context.ShippmentLogs.Add(ShipmentLog);
                 await _context.SaveChangesAsync();
                 return _controller.StatusCode(200);
             }
@@ -100,10 +109,29 @@ namespace Purch_Managment.Services
         //Edit Shipment Name
         public async Task<IActionResult> EditShipment(Shipment shipment)
         {
-   
             try
             {
+                var oldShipment =  _context.Shipments.Find(shipment.ShipmentId);
+                int oldStatus = oldShipment.CurrentStatusId;
+                _context.Entry(oldShipment).State = EntityState.Detached;
                 _context.Entry(shipment).State = EntityState.Modified;
+                if(oldStatus != shipment.CurrentStatusId)
+                {
+                    //Change the log of the status
+
+                    var updateOldStatusDate =  _context.ShippmentLogs.Where(i => i.ShippmentId == shipment.ShipmentId).OrderBy(x =>x.LogId).Last();
+
+                    updateOldStatusDate.EndDate = DateTime.Now;
+                    //Make a  new log for the created shipment with status of created
+                    // and time equal current time;
+                    ShippmentLog ShipmentLog = new ShippmentLog();
+                    ShipmentLog.ShippmentId = shipment.ShipmentId;
+                    ShipmentLog.StatusId = shipment.CurrentStatusId;
+                    ShipmentLog.StartDate = DateTime.Now;
+                    ShipmentLog.EndDate = DateTime.Now;
+                    _context.ShippmentLogs.Add(ShipmentLog);
+                }
+
                 _context.SaveChanges();
                 return _controller.StatusCode(200);
             }

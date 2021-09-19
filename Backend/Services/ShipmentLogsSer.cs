@@ -32,7 +32,7 @@ namespace Purch_Managment.Services
 
         }
 
-        //Get ShipmentLogs By ID
+        //Get ShipmentLogs By shipmetn ID
         public async Task<ActionResult<IEnumerable<ShipmentLogsModel>>> GetShipmentLog(int id)
         {
             var log = await _context.ShippmentLogs.Include(s =>s.Status).Where(x => x.ShippmentId == id).Select(x => _handler.ShipmentLogsHandlerToModel(x)).ToListAsync();

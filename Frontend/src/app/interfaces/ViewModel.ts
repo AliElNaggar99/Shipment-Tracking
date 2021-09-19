@@ -77,7 +77,8 @@ export class ViewModel{
     ],
 
 
-    ApiUrl:"https://purchmanagmentapi.azurewebsites.net/api"
+   // ApiUrl:"https://purchmanagmentapi.azurewebsites.net/api"
+    ApiUrl:"https://localhost:44305/api"
       
     };
 

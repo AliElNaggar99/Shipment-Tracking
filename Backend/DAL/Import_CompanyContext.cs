@@ -34,7 +34,6 @@ namespace Purch_Managment.DAL
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Name=ImportCompanyDB");
             }
         }
@@ -241,21 +240,23 @@ namespace Purch_Managment.DAL
 
             modelBuilder.Entity<ShippmentLog>(entity =>
             {
-                entity.HasKey(e => new { e.ShippmentId, e.StatusId });
+                entity.HasKey(e => e.LogId);
 
                 entity.ToTable("Shippment_logs");
 
-                entity.Property(e => e.ShippmentId).HasColumnName("Shippment_Id");
-
-                entity.Property(e => e.StatusId).HasColumnName("Status_Id");
+                entity.Property(e => e.LogId).HasColumnName("LogID");
 
                 entity.Property(e => e.EndDate)
-                    .HasColumnType("date")
+                    .HasColumnType("datetime")
                     .HasColumnName("End_Date");
 
+                entity.Property(e => e.ShippmentId).HasColumnName("Shippment_Id");
+
                 entity.Property(e => e.StartDate)
-                    .HasColumnType("date")
+                    .HasColumnType("datetime")
                     .HasColumnName("Start_Date");
+
+                entity.Property(e => e.StatusId).HasColumnName("Status_Id");
 
                 entity.HasOne(d => d.Shippment)
                     .WithMany(p => p.ShippmentLogs)

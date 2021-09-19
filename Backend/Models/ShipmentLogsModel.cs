@@ -7,6 +7,7 @@ namespace Purch_Managment.Models
 {
     public class ShipmentLogsModel
     {
+        public int LogId { get; set; }
         public int ShippmentId { get; set; }
         public int StatusId { get; set; }
 

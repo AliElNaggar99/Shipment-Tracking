@@ -18,6 +18,7 @@ namespace Purch_Managment.Handlers
         public ShipmentLogsModel ShipmentLogsHandlerToModel(ShippmentLog SL) =>
            new ShipmentLogsModel
            {
+              LogId = SL.LogId,
               ShippmentId = SL.ShippmentId,
               StatusId = SL.StatusId,
               StatusName = SL.Status.StatusName,
