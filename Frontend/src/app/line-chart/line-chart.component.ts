@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BaseChartDirective } from 'angular-bootstrap-md';
 import { Chart } from 'chart.js';
 import { ShipmentLogsService } from '../Services/shipment-logs.service';
@@ -10,7 +11,7 @@ import { ShipmentLogsService } from '../Services/shipment-logs.service';
 })
 export class LineChartComponent implements OnInit {
 
-  constructor(private myShipmentLogs:ShipmentLogsService) { }
+  constructor(private myShipmentLogs:ShipmentLogsService,private _snackBar: MatSnackBar) { }
 
 
   @Output() SeletedShipment = new EventEmitter<any>() ;
@@ -47,7 +48,11 @@ export class LineChartComponent implements OnInit {
 
         console.log(this.AllShipmentTime);
         this.chartDatasets[0]={ data: this.AllShipmentTime , label: 'number of days taken by Shipment'};
-    })
+    },error =>{
+      this._snackBar.open("There is No Shipments Yet ❌","",{
+        duration: 3000,
+        panelClass: ['snackbar-error']
+      })});
   }
 
   public chartType: string = 'line';
