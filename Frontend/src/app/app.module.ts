@@ -40,6 +40,11 @@ import { ShippingCompanyPageComponent } from './shipping-company-page/shipping-c
 import { PurchasingTeamPageComponent } from './purchasing-team-page/purchasing-team-page.component';
 import { ShipmentProductsPageComponent } from './shipment-products-page/shipment-products-page.component';
 import { ViewModel } from './interfaces/ViewModel';
+import { ShipmentLogsPageComponent } from './shipment-logs-page/shipment-logs-page.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
+// For MDB Angular Free
+import { ChartsModule, WavesModule } from 'angular-bootstrap-md';
+import { BarChartComponent } from './bar-chart/bar-chart.component'
 
 
 
@@ -66,7 +71,10 @@ import { ViewModel } from './interfaces/ViewModel';
     StatuspageComponent,
     ShippingCompanyPageComponent,
     PurchasingTeamPageComponent,
-    ShipmentProductsPageComponent
+    ShipmentProductsPageComponent,
+    ShipmentLogsPageComponent,
+    LineChartComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +94,9 @@ import { ViewModel } from './interfaces/ViewModel';
     MatSortModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ChartsModule,
+    WavesModule
   ],
   providers: [ViewModel],
   bootstrap: [AppComponent]

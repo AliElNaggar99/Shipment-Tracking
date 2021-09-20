@@ -14,6 +14,7 @@ import { StatuspageComponent } from '../statuspage/statuspage.component';
 import { ShippingCompanyPageComponent } from '../shipping-company-page/shipping-company-page.component';
 import { PurchasingTeamPageComponent } from '../purchasing-team-page/purchasing-team-page.component';
 import { ShipmentProductsPageComponent } from '../shipment-products-page/shipment-products-page.component';
+import { ShipmentLogsPageComponent } from '../shipment-logs-page/shipment-logs-page.component';
 
 
 
@@ -29,6 +30,7 @@ const routes : Routes = [
   {path:'shipping companies',component:ShippingCompanyPageComponent},
   {path:'purchasing teams',component:PurchasingTeamPageComponent},
   {path:'shipment products',component:ShipmentProductsPageComponent},
+  {path:'shipments logs',component:ShipmentLogsPageComponent},
   { path: '**', component: HomePageCardsComponent },
 ];
 @NgModule({
