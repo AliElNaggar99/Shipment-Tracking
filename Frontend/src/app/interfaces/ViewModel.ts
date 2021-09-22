@@ -2,9 +2,9 @@ export class ViewModel{
     ViewModelObject = {
         shipmentData:["shipmentId", "supplierName", "porkerName", "currencyName","storageName","portName","currentStatusName","shippingCompanyName","purchTeamName","wayOfTransport",
         "taxes","fines","taxesCurrencyName","estimatedDeliveryDate","actualDeliveryDate","actions"],
-        shipmentColumn:["Shipment Id", "Supplier Name", "Porker Name", "Currency Name","Storage Name","Port Name","Current Status Name","Shipping Company Name","Purchasing Team Name","Way Of Transport",
+        shipmentColumn:["Shipment Id", "Supplier Name", "Broker Name", "Currency Name","Storage Name","Port Name","Current Status Name","Shipping Company Name","Purchasing Team Name","Way Of Transport",
         "Taxes","Fines","Taxes Currency Name","Estimated Delivery Date","Actual Delivery Date","Actions"],
-        shipmentDataDBNames:["Supplier", "Porker", "Currency","Storage","Port","Current Status","Shipping Company","Purchasing Team","Taxes Currency","Way Of Transport",
+        shipmentDataDBNames:["Supplier", "Broker", "Currency","Storage","Port","Current Status","Shipping Company","Purchasing Team","Taxes Currency","Way Of Transport",
         "Taxes","Fines"],
         shipmentDataDB:["supplierId", "porkerId", "currencyId","storageId","portId","currentStatusId","shippingCompanyId","purchTeamId","taxesCurrencyId","wayOfTransport",
         "taxes","fines"],
@@ -77,7 +77,7 @@ export class ViewModel{
     ],
 
 
-   ApiUrl:"https://purchmanagmentapi.azurewebsites.net/api"
+     ApiUrl:"https://purchmanagmentapi.azurewebsites.net/api"
     //ApiUrl:"https://localhost:44305/api"
       
     };
