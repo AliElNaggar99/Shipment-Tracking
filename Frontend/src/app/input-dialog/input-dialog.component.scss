@@ -17,3 +17,7 @@ button {
 .bottom-buttons{
     margin-top: 1.8rem;
 }
+
+div::-webkit-scrollbar {
+    display: none;
+}

@@ -8,23 +8,22 @@
     <mat-label>{{ShipmentInputNames[i]}}</mat-label>
     <input matInput [(ngModel)]="data[attr]">
   </mat-form-field>
+
+  <mat-form-field  class="data-label" appearance="fill">
+    <mat-label >Choose Estimated Delivery Date</mat-label>
+    <input matInput [(ngModel)]="data.estimatedDeliveryDate.value" [matDatepicker]="picker1" >
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="data-label" appearance="fill">
+    <mat-label>Choose Actual Delivery Date</mat-label>
+    <input matInput [(ngModel)]="data.actualDeliveryDate.value" [matDatepicker]="picker" >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <div mat-dialog-actions class="bottom-buttons">
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{data.EditOrAdd}}</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+ </div>
 </div>
 
-<div mat-dialog-content>
-    <mat-form-field  class="data-label" appearance="fill">
-        <mat-label >Choose Estimated Delivery Date</mat-label>
-        <input matInput [(ngModel)]="data.estimatedDeliveryDate.value" [matDatepicker]="picker1" >
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
- </mat-form-field>
-  <mat-form-field class="data-label" appearance="fill">
-        <mat-label>Choose Actual Delivery Date</mat-label>
-        <input matInput [(ngModel)]="data.actualDeliveryDate.value" [matDatepicker]="picker" >
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-</div>
-<div mat-dialog-actions class="bottom-buttons">
-   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{data.EditOrAdd}}</button>
-   <button mat-button (click)="onNoClick()">Cancel</button>
-</div>

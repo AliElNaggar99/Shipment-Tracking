@@ -4,8 +4,8 @@
     <mat-label>{{InputNames[i]}}</mat-label>
     <input matInput [(ngModel)]="data[attr]">
   </mat-form-field>
-</div>
-<div mat-dialog-actions class="bottom-buttons">
-   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{data.EditOrAdd}}</button>
-   <button mat-button (click)="onNoClick()">Cancel</button>
+  <div mat-dialog-actions class="bottom-buttons">
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>{{data.EditOrAdd}}</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+ </div>
 </div>
